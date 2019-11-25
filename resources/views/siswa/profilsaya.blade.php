@@ -53,16 +53,12 @@
 											<li>Alamat <span>{{auth()->user()->siswa->alamat}}</span></li>										
 										</ul>
 									</div>
-									<div class="text-center"><a href="/siswa/{{auth()->user()->siswa->id}}/edit" class="btn btn-warning">Edit Profil</a></div>
 								</div>
 								<!-- END PROFILE DETAIL -->
 							</div>
 							<!-- END LEFT COLUMN -->
 							<!-- RIGHT COLUMN -->
 							<div class="profile-right">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-							Tambah Nilai
-							</button>
 								<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Mata Pelajaran</h3>
@@ -76,7 +72,6 @@
 												<th>Semester</th>
 												<th>Nilai</th>
 												<th>Guru</th>
-												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -87,7 +82,6 @@
 												<td>{{$mapel->semester}}</td>
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{auth()->user()->siswa->id}}/editnilai" data-title="Masukkan Nilai">{{$mapel->pivot->nilai}}</a></td>
 												<td><a href="/guru/{{$mapel->guru_id}}/profile">{{$mapel->guru->nama}}</td>
-												<td><a href="/siswa/{{auth()->user()->siswa->id}}/{{$mapel->id}}/deletenilai" class="btn btn-danger  btn-sm" onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')">Delete</a></td>
 											</tr>
 											@endforeach											
 										</tbody>
@@ -110,7 +104,7 @@
 @endsection
 
 @section('footer')
-<script>
-	
-</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+
 @stop

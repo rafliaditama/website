@@ -140,9 +140,22 @@ class SiswaController extends Controller
         // ->make(true);
         ->toJson();
     }
-    public function profilsaya(){
+    public function profilsaya(Siswa $siswa){
+
+        $matapelajaran = \App\Mapel::all();
+
         $siswa = auth()->user()->siswa;
+        $categories = [];
+        $data = [];
+
+        foreach($matapelajaran as $mp){
+            if ($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()) {
+                $categories[] = $mp->nama;
+                $data[] = $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;    
+            }                       
+                    }
         return view('siswa.profilsaya',compact(['siswa']));
+        // ['siswa' => $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories,'data' => $data]
     }
 
 
